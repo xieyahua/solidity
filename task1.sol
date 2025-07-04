@@ -53,3 +53,27 @@ contract StringReverser {
     }
 }
 
+
+-----------------------------------------------3.用 solidity 实现整数转罗马数字---------------------------------------------------
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract IntegerToRoman {
+    function intToRoman(uint256 num) public pure returns (string memory) {
+        // 定义罗马数字符号和对应的整数值
+        string[13] memory symbols = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
+        uint16[13] memory values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+        string memory result = "";
+        
+        // 遍历整数值数组，从大到小匹配并拼接罗马数字符号
+        for (uint256 i = 0; i < values.length; i++) {
+            while (num >= values[i]) {
+                result = string(abi.encodePacked(result, symbols[i]));
+                num -= values[i];
+            }
+        }
+        
+        return result;
+    }
+}
+
