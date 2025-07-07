@@ -124,3 +124,42 @@ contract RomanNumeralConverter {
     }
 }
 
+
+
+----------------------------5.合并两个有序数组 (Merge Sorted Array)---------------------------------------
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract MergeSortedArrays {
+    function merge(
+        uint256[] memory nums1, 
+        uint256 m, 
+        uint256[] memory nums2, 
+        uint256 n
+    ) public pure returns (uint256[] memory) {
+        uint256[] memory merged = new uint256[](m + n);
+        uint256 i = 0;
+        uint256 j = 0;
+        uint256 k = 0;
+        
+        while (i < m && j < n) {
+            if (nums1[i] < nums2[j]) {
+                merged[k++] = nums1[i++];
+            } else {
+                merged[k++] = nums2[j++];
+            }
+        }
+        
+        while (i < m) {
+            merged[k++] = nums1[i++];
+        }
+        
+        while (j < n) {
+            merged[k++] = nums2[j++];
+        }
+        
+        return merged;
+    }
+}
+
